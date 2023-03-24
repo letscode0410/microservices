@@ -17,7 +17,7 @@ public class CatalogController:ApiController
     }
 
     [HttpGet]
-    [Route("[action]/{id}",Name = "GetProductId")]
+    [Route("[action]",Name = "GetAllProducts")]
     [ProducesResponseType(typeof(ProductResponse),(int)HttpStatusCode.OK)]
     public async Task<ActionResult<ProductResponse>> GetAllProducts()
     {

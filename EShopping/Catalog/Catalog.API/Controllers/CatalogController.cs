@@ -3,6 +3,7 @@ using System.Net;
 using Catalog.Application.Commands;
 using Catalog.Application.Queries;
 using Catalog.Application.Responses;
+using Catalog.Core.Specs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,11 +19,11 @@ public class CatalogController:ApiController
     }
 
     [HttpGet]
-    [Route("[action]",Name = "GetAllProducts")]
+    [Route("GetAllProducts")]
     [ProducesResponseType(typeof(ProductResponse),(int)HttpStatusCode.OK)]
-    public async Task<ActionResult<ProductResponse>> GetAllProducts()
+    public async Task<ActionResult<ProductResponse>> GetAllProducts([FromQuery]CatalogSpecParams catalogSpecParams)
     {
-        var query = new GetAllProductsQuery();
+        var query = new GetAllProductsQuery(catalogSpecParams);
         var results = await _mediator.Send(query);
         return Ok(results);
     }

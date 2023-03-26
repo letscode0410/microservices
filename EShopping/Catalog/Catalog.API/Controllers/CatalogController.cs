@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
-public class CatalogController:ApiController
+public class CatalogControllerBase:ApiControllerBase
 {
     private readonly IMediator _mediator;
 
-    public CatalogController(IMediator mediator)
+    public CatalogControllerBase(IMediator mediator)
     {
         _mediator = mediator;
     }
